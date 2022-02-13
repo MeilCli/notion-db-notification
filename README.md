@@ -5,7 +5,7 @@ When you run the CLI tool, it will notify you of changes since the last time you
 
 ## Usage
 ### Install
-`npm install -g notion-db-notification`
+`npm install -g notion-db-notification-cli`
 
 ### Setup
 Create config file:
