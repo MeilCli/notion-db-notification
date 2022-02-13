@@ -1,5 +1,7 @@
 # notion-db-notification
-This cli tool is that notify created or updated page of notion database. When you run the CLI tool, it will notify you of changes since the last time you ran it.
+This cli tool is that notify created or updated page of notion database. 
+
+When you run the CLI tool, it will notify you of changes since the last time you ran it.
 
 ## Usage
 ### Setup
@@ -31,6 +33,41 @@ sources:
 
 if you want to dry-run: you can use `-d` option  
 `notion-db-notification {config_yml_file_to_path} -d`
+
+## Advanced
+### Secure token
+if you avoid to write token to config file, you can use environment variable.
+```yml
+notion:
+  token: 'env:NOTION_TOKEN' # environment variable name is NOTION_TOKEN
+  interval: 1000
+```
+```yml
+senders:
+  - type: 'slack'
+    token: 'env:SLACK_TOKEN' # environment variable name is SLACK_TOKEN
+```
+
+### Ratelimit for Notion API
+Notion API has Rate limits.  
+ref: https://developers.notion.com/reference/request-limits#rate-limits
+
+So, this tool can be set interval milli seconds for api call.
+```yml
+notion:
+  token: 'notion_token' # your notion token
+  interval: 1000 # recommend range of 500~1500
+```
+
+## Recipe
+### Notify empty title page
+config file:
+```yml
+sources:
+  - database: 'database_id' # your notion database id
+    channel: 'channel_name' # channel name
+    filter: 'page.properties["YOUR_TITLE_PROPERTY_NAME"].title.length == 0' # replace YOUR_TITLE_PROPERTY_NAME
+```
 
 ## License
 This repository is under MIT License
