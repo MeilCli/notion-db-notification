@@ -4,6 +4,9 @@ This cli tool is that notify created or updated page of notion database.
 When you run the CLI tool, it will notify you of changes since the last time you ran it.
 
 ## Usage
+### Install
+`npm install -g notion-db-notification`
+
 ### Setup
 Create config file:
 ```yml
