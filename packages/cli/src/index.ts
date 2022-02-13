@@ -21,13 +21,18 @@ async function main() {
     }
     const [, , configPath] = process.argv;
     const isDryRun = process.argv.includes("-d");
+    const isInit = process.argv.includes("-i");
     const notificationComputerProvider = new NotificationComputerProvider(
         storeProviders,
         notificationSenderProviders,
         notificationChannelProviders
     );
     const notificationComputer = notificationComputerProvider.provide(configPath);
-    await notificationComputer.run(isDryRun);
+    if (isInit) {
+        await notificationComputer.init();
+    } else {
+        await notificationComputer.run(isDryRun);
+    }
 }
 
 main();

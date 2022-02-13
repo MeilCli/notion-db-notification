@@ -15,6 +15,31 @@ export class NotificationComputer {
         private readonly sources: Source[]
     ) {}
 
+    async init(): Promise<void> {
+        this.log("init:");
+
+        const databaseIds = this.getDatabaseIds();
+        for (const databaseId of databaseIds) {
+            const lastWatch = await this.store.getDatabaseLastWatch(databaseId);
+            if (lastWatch != null) {
+                continue;
+            }
+            this.log(`init: database: ${databaseId}`);
+
+            const pages = await this.client.getDatabasePagesWithNoPaging(databaseId);
+            if (pages.length == 0) {
+                continue;
+            }
+
+            const lastEditedUnixTime = Date.parse(pages[0].last_edited_time);
+            const lastEditedSameTimePageIds = pages
+                .filter((x) => Date.parse(x.last_edited_time) == lastEditedUnixTime)
+                .map((x) => x.id);
+            await this.store.saveDatabaseLastWatch(databaseId, lastEditedUnixTime, lastEditedSameTimePageIds);
+            this.log(`init: database: ${databaseId} completed`);
+        }
+    }
+
     async run(isDryRun: boolean): Promise<void> {
         this.log(`run: isDryRun: ${isDryRun}`);
 

@@ -11,6 +11,24 @@ export class NotionClient {
         this.client = new Client({ auth: token });
     }
 
+    async getDatabasePagesWithNoPaging(databaseId: string): Promise<DatabasePage[]> {
+        const response = await this.apiPoller.callApi(() =>
+            this.client.databases.query({
+                database_id: databaseId,
+                page_size: 100,
+                sorts: [{ timestamp: "last_edited_time", direction: "descending" }],
+            })
+        );
+
+        const result: DatabasePage[] = [];
+        for (const value of response.results) {
+            if ("last_edited_time" in value) {
+                result.push(value);
+            }
+        }
+        return result;
+    }
+
     /**
      * getDatabasePages with paging
      * @param sinceUnixTime get pages since time
