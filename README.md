@@ -69,6 +69,16 @@ sources:
     filter: 'page.properties["YOUR_TITLE_PROPERTY_NAME"].title.length == 0' # replace YOUR_TITLE_PROPERTY_NAME
 ```
 
+## Development
+- install: `npm install`
+- add package: 
+  - `npm init -w packages/xxx`
+  - add manually reference at package.json 
+  - change properties at new package.json
+  - add reference root tsconfig.json
+  - `npm run reference`
+- publish: `npm publish --access public --workspaces`
+
 ## License
 This repository is under MIT License
 
