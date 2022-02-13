@@ -2,6 +2,9 @@
     "name": "notion-db-notification-store-file",
     "version": "0.0.1",
     "description": "",
+    "keywords": [
+        "notion"
+    ],
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "files": [
