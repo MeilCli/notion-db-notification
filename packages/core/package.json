@@ -5,6 +5,7 @@
     "keywords": [
         "notion"
     ],
+    "homepage": "https://github.com/MeilCli/notion-db-notification",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "files": [
