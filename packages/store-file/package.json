@@ -1,0 +1,34 @@
+{
+    "name": "notion-db-notification-store-file",
+    "version": "0.0.1",
+    "description": "",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "files": [
+        "lib"
+    ],
+    "scripts": {
+        "test": "jest"
+    },
+    "author": "MeilCli",
+    "license": "MIT",
+    "dependencies": {
+        "notion-db-notification-core": "^0.0.1"
+    },
+    "jest": {
+        "clearMocks": true,
+        "moduleFileExtensions": [
+            "js",
+            "ts"
+        ],
+        "testEnvironment": "node",
+        "testMatch": [
+            "**/*.test.ts"
+        ],
+        "testRunner": "jest-circus/runner",
+        "transform": {
+            "^.+\\.ts$": "ts-jest"
+        },
+        "verbose": true
+    }
+}
