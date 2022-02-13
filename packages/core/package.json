@@ -1,7 +1,7 @@
 {
     "name": "notion-db-notification-core",
     "version": "0.0.1",
-    "description": "",
+    "description": "notion-db-notification core package",
     "keywords": [
         "notion"
     ],

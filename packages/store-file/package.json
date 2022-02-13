@@ -1,7 +1,7 @@
 {
     "name": "notion-db-notification-store-file",
     "version": "0.0.1",
-    "description": "",
+    "description": "notion-db-notification file store package",
     "keywords": [
         "notion"
     ],

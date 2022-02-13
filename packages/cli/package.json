@@ -1,7 +1,7 @@
 {
     "name": "notion-db-notification-cli",
     "version": "0.0.1",
-    "description": "",
+    "description": "notion-db-notification cli package",
     "keywords": [
         "notion"
     ],

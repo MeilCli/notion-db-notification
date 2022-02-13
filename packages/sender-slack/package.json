@@ -1,7 +1,7 @@
 {
     "name": "notion-db-notification-sender-slack",
     "version": "0.0.1",
-    "description": "",
+    "description": "notion-db-notification slack sender package",
     "keywords": [
         "notion"
     ],
