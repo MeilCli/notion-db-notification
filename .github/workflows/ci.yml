@@ -25,6 +25,10 @@ jobs:
             ${{ runner.OS }}-build-${{ hashFiles('package.json') }}-
             ${{ runner.OS }}-build-
       - run: npm install
+      - run: npm install -w packages/core
+      - run: npm install -w packages/store-file
+      - run: npm install -w packages/sender-slack
+      - run: npm install -w packages/cli
       - run: npm run build
       - run: npm run test
       - run: npm run lint:report
