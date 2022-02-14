@@ -6,7 +6,7 @@
     "main": "main.js",
     "scripts": {
         "build": "tsc -b -i",
-        "test": "npm run build && npm run test --workspaces",
+        "test:all": "npm run build && npm run test --workspaces",
         "lint": "eslint **/src/**/*.ts",
         "lint:report": "eslint --output-file eslint_report.json --format json --ext .ts **/src/**/*.ts",
         "cli": "npm run build && npm run cli -w packages/cli",
