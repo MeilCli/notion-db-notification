@@ -1,5 +1,5 @@
 # notion-db-notification
-[![npm version](https://badge.fury.io/js/notion-db-notification-cli.svg)](https://badge.fury.io/js/notion-db-notification-cli)  
+[![CI](https://github.com/MeilCli/notion-db-notification/actions/workflows/ci.yml/badge.svg)](https://github.com/MeilCli/notion-db-notification/actions/workflows/ci.yml) [![npm version](https://badge.fury.io/js/notion-db-notification-cli.svg)](https://badge.fury.io/js/notion-db-notification-cli)  
 This cli tool is that notify created or updated page of notion database. 
 
 When you run the CLI tool, it will notify you of changes since the last time you ran it.
