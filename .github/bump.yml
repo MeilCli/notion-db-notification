@@ -16,6 +16,7 @@ release:
     - replace-prefix: 'dependency: '
       new-prefix: ''
 branch:
+  base-branch: 'release'
   create-major-version-branch: false
 categories:
   - title: 'Breaking Changes!'

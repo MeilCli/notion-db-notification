@@ -30,6 +30,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 16
+      - run: git checkout -b release
       - run: npm install
       - run: npm run build
       - run: npm run test
@@ -40,12 +41,13 @@ jobs:
           dry_run: ${{ github.event.inputs.dry_run }}
           draft: ${{ github.event.inputs.draft }}
           pre_release: ${{ github.event.inputs.pre_release }}
-          github_token: ${{ secrets.MEILCLI }}
   publish-release:
     needs: create-release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: 'release'
       - uses: actions/setup-node@v1
         with:
           node-version: 16
@@ -56,3 +58,13 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.MEILCLI_BOT }}
+          commit-message: 'version up'
+          title: 'version up'
+          assignees: 'MeilCli'
+          reviewers: 'MeilCli'
+          branch: 'release'
+          base: 'master'
