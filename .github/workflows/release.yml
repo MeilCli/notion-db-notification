@@ -40,7 +40,7 @@ jobs:
           dry_run: ${{ github.event.inputs.dry_run }}
           draft: ${{ github.event.inputs.draft }}
           pre_release: ${{ github.event.inputs.pre_release }}
-          github_token: ${{ secrets.MEILCLI_BOT }}
+          github_token: ${{ secrets.MEILCLI }}
   publish-release:
     needs: create-release
     runs-on: ubuntu-latest
