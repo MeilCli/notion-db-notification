@@ -30,7 +30,12 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 16
-      - run: git checkout -b release
+      - name: Create release branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git checkout -b release
+          git push origin release
       - run: npm install
       - run: npm run build
       - run: npm run test
