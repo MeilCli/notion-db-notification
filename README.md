@@ -81,6 +81,8 @@ sources:
   - change properties at new package.json
   - add reference root tsconfig.json
   - `npm run reference`
+  - add `npm run copy:xxx` command
+  - change `.github/bump.yml`
 - publish: `npm publish --access public --workspaces`
 
 ## License
