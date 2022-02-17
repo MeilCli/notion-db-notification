@@ -57,12 +57,14 @@ jobs:
         with:
           node-version: 16
           registry-url: 'https://registry.npmjs.org'
+      # default npm version is 8.3.1, but its version is failed npm install
+      # required 8.5.0
       - run: npm i -g npm@8
       - run: npm -v
       - run: npm install
       - run: npm run build
       - run: npm run copy
-      - run: npm publish
+      - run: npm publish --access public --workspaces
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Create Pull Request
