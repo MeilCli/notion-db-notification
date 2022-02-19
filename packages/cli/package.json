@@ -1,6 +1,6 @@
 {
     "name": "notion-db-notification-cli",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "notion-db-notification cli package",
     "keywords": [
         "notion"
@@ -21,9 +21,9 @@
     "author": "MeilCli",
     "license": "MIT",
     "dependencies": {
-        "notion-db-notification-core": "^0.0.2",
-        "notion-db-notification-store-file": "^0.0.2",
-        "notion-db-notification-sender-slack": "^0.0.2"
+        "notion-db-notification-core": "^0.0.3",
+        "notion-db-notification-store-file": "^0.0.3",
+        "notion-db-notification-sender-slack": "^0.0.3"
     },
     "jest": {
         "clearMocks": true,
