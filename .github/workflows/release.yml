@@ -98,4 +98,4 @@ jobs:
           owner: MeilCli
           repo: notion-db-notification
           pull_number: ${{ fromJson(steps.create_pull_request.outputs.data).number }}
-          reviwers: '["MeilCli"]'
+          reviewers: '["MeilCli"]'
