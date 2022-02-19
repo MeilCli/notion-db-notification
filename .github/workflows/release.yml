@@ -68,12 +68,34 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+        uses: octokit/request-action@v2.x
+        id: create_pull_request
+        env:
+          GITHUB_TOKEN: ${{ secrets.MEILCLI_BOT }}
         with:
-          token: ${{ secrets.MEILCLI_BOT }}
-          commit-message: 'version up'
+          route: POST /repos/{owner}/{repo}/pulls
+          owner: MeilCli
+          repo: notion-db-notification
           title: 'version up'
-          assignees: 'MeilCli'
-          reviewers: 'MeilCli'
-          branch: 'release'
+          head: 'release'
           base: 'master'
+      - name: Add Assign
+        uses: octokit/request-action@v2.x
+        env:
+          GITHUB_TOKEN: ${{ secrets.MEILCLI_BOT }}
+        with:
+          route: POST /repos/{owner}/{repo}/issues/{issue_number}/assignees
+          owner: MeilCli
+          repo: notion-db-notification
+          issue_number: ${{ fromJson(steps.create_pull_request.outputs.data).number }}
+          assignees: '["MeilCli"]'
+      - name: Add Reviewer
+        uses: octokit/request-action@v2.x
+        env:
+          GITHUB_TOKEN: ${{ secrets.MEILCLI_BOT }}
+        with:
+          route: POST /repos/{owner}/{repo}/pulls/{pull_number}/requested_reviewers
+          owner: MeilCli
+          repo: notion-db-notification
+          pull_number: ${{ fromJson(steps.create_pull_request.outputs.data).number }}
+          reviwers: '["MeilCli"]'
