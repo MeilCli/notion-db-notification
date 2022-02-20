@@ -1,6 +1,6 @@
 {
     "name": "notion-db-notification-sender-slack",
-    "version": "0.0.4",
+    "version": "0.1.0",
     "description": "notion-db-notification slack sender package",
     "keywords": [
         "notion"
@@ -18,7 +18,7 @@
     "license": "MIT",
     "dependencies": {
         "@slack/web-api": "^6.6.0",
-        "notion-db-notification-core": "^0.0.4"
+        "notion-db-notification-core": "^0.1.0"
     },
     "jest": {
         "clearMocks": true,
