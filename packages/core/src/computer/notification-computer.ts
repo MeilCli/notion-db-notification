@@ -18,6 +18,9 @@ export class NotificationComputer {
     async init(): Promise<void> {
         this.log("init:");
 
+        await this.store.restore();
+        this.log("store: restore");
+
         const databaseIds = this.getDatabaseIds();
         for (const databaseId of databaseIds) {
             const lastWatch = await this.store.getDatabaseLastWatch(databaseId);
@@ -35,13 +38,19 @@ export class NotificationComputer {
             const lastEditedSameTimePageIds = pages
                 .filter((x) => Date.parse(x.last_edited_time) == lastEditedUnixTime)
                 .map((x) => x.id);
-            await this.store.saveDatabaseLastWatch(databaseId, lastEditedUnixTime, lastEditedSameTimePageIds);
+            this.store.putDatabaseLastWatch(databaseId, lastEditedUnixTime, lastEditedSameTimePageIds);
             this.log(`init: database: ${databaseId} completed`);
         }
+
+        await this.store.save();
+        this.log("store: save");
     }
 
     async run(isDryRun: boolean): Promise<void> {
         this.log(`run: isDryRun: ${isDryRun}`);
+
+        await this.store.restore();
+        this.log("store: restore");
 
         const databaseIds = this.getDatabaseIds();
         const databasePages = new Map<string, DatabasePage[]>();
@@ -77,7 +86,7 @@ export class NotificationComputer {
                         ...pages.filter((x) => newLastWatchUnixTime == Date.parse(x.last_edited_time)).map((x) => x.id)
                     );
                 }
-                await this.store.saveDatabaseLastWatch(databaseId, newLastWatchUnixTime, newLastWatchPageIds);
+                this.store.putDatabaseLastWatch(databaseId, newLastWatchUnixTime, newLastWatchPageIds);
             }
         }
 
@@ -114,6 +123,13 @@ export class NotificationComputer {
 
                 await this.sendNotification(source.channel, notification, isDryRun);
             }
+        }
+
+        if (isDryRun == false) {
+            await this.store.save();
+            this.log("store: save");
+        } else {
+            this.log("store: save: dryRun");
         }
     }
 

@@ -3,17 +3,24 @@ import { Store } from "notion-db-notification-core";
 import { FileData } from "./file-data";
 
 export class FileStore implements Store {
-    private readonly data: FileData;
+    private data: FileData = { scheme: "v0", timestamps: [] };
 
-    constructor(private readonly path: string) {
-        if (fs.existsSync(path)) {
-            this.data = JSON.parse(fs.readFileSync(path).toString()) as FileData;
+    constructor(private readonly path: string) {}
+
+    async restore(): Promise<void> {
+        if (fs.existsSync(this.path)) {
+            this.data = JSON.parse(fs.readFileSync(this.path).toString()) as FileData;
         } else {
             this.data = { scheme: "v0", timestamps: [] };
         }
     }
 
-    saveDatabaseLastWatch(databaseId: string, lastWatchUnixTime: number, lastWatchPageIds: string[]): Promise<void> {
+    async save(): Promise<void> {
+        fs.writeFileSync(this.path, JSON.stringify(this.data, undefined, 4));
+        return Promise.resolve();
+    }
+
+    putDatabaseLastWatch(databaseId: string, lastWatchUnixTime: number, lastWatchPageIds: string[]): void {
         if (this.data.timestamps.map((x) => x.database).includes(databaseId)) {
             for (const timestamp of this.data.timestamps) {
                 timestamp.lastWatchUnixTime = lastWatchUnixTime;
@@ -26,16 +33,14 @@ export class FileStore implements Store {
                 lastWatchPageIds: lastWatchPageIds,
             });
         }
-        fs.writeFileSync(this.path, JSON.stringify(this.data, undefined, 4));
-        return Promise.resolve();
     }
 
-    getDatabaseLastWatch(databaseId: string): Promise<[number, string[]] | null> {
+    getDatabaseLastWatch(databaseId: string): [number, string[]] | null {
         for (const timestamp of this.data.timestamps) {
             if (timestamp.database == databaseId) {
-                return Promise.resolve([timestamp.lastWatchUnixTime, timestamp.lastWatchPageIds]);
+                return [timestamp.lastWatchUnixTime, timestamp.lastWatchPageIds];
             }
         }
-        return Promise.resolve(null);
+        return null;
     }
 }

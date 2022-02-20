@@ -1,5 +1,9 @@
 export interface Store {
-    saveDatabaseLastWatch: (databaseId: string, lastWatchUnixTime: number, lastWatchPageIds: string[]) => Promise<void>;
+    restore(): Promise<void>;
 
-    getDatabaseLastWatch: (databaseId: string) => Promise<[number, string[]] | null>;
+    save(): Promise<void>;
+
+    putDatabaseLastWatch(databaseId: string, lastWatchUnixTime: number, lastWatchPageIds: string[]): void;
+
+    getDatabaseLastWatch(databaseId: string): [number, string[]] | null;
 }
