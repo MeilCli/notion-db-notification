@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import * as path from "path";
 import { Store } from "notion-db-notification-core";
 import { FileData } from "./file-data";
 
@@ -16,6 +17,10 @@ export class FileStore implements Store {
     }
 
     async save(): Promise<void> {
+        const directory = path.dirname(this.path);
+        if (directory.length != 0 && fs.existsSync(directory) == false) {
+            fs.mkdirSync(directory, { recursive: true });
+        }
         fs.writeFileSync(this.path, JSON.stringify(this.data, undefined, 4));
         return Promise.resolve();
     }
