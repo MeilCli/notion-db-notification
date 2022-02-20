@@ -8,9 +8,10 @@ import {
 } from "notion-db-notification-core";
 import { SlackNotificationSenderProvider, SlackNotificationChannelProvider } from "notion-db-notification-sender-slack";
 import { FileStoreProvider } from "notion-db-notification-store-file";
+import { GitHubStoreProvider } from "notion-db-notification-store-github";
 import * as process from "process";
 
-const storeProviders: StoreProvider[] = [new FileStoreProvider()];
+const storeProviders: StoreProvider[] = [new FileStoreProvider(), new GitHubStoreProvider()];
 const notificationSenderProviders: NotificationSenderProvider[] = [new SlackNotificationSenderProvider()];
 const notificationChannelProviders: NotificationChannelProvider[] = [new SlackNotificationChannelProvider()];
 

@@ -29,8 +29,43 @@ sources:
     channel: 'channel_name' # channel name
 ```
 
+#### Store providers
+##### File provider
+File provider is read/write local store state file.
+```yml
+store:
+  type: 'file'
+  path: 'path' # path of cli tool's state file
+```
+##### GitHub provider
+GitHub provider is read/write github repository store state file.
+(using [Contents API](https://docs.github.com/en/rest/reference/repos#contents))
+
+```yml
+# using your personal access token
+store:
+  type: 'github'
+  path: 'path' # path of cli tool's state file
+  owner: 'owner' # owner name of github repository
+  repository: 'repository' # repository name of github repository
+  token: 'token' # github token
+```
+```yml
+# using your github app token
+store:
+  type: 'github'
+  path: 'path' # path of cli tool's state file
+  owner: 'owner' # owner name of github repository
+  repository: 'repository' # repository name of github repository
+  applicationId: 1 # github app id
+  installationId: 1 # github app's installation id
+  privateKey: 'privateKey' # github app's private key
+```
+
 ### Initialization
 `notion-db-notification {config_yml_file_to_path} -i`
+
+This command is to add database state if not managed. So, recommend to execute this command every execution.
 
 ### Running
 `notion-db-notification {config_yml_file_to_path}`
@@ -91,4 +126,6 @@ This repository is under MIT License
 including libraries:
 - [makenotion/notion-sdk-js](https://github.com/makenotion/notion-sdk-js), published by [MIT License](https://github.com/makenotion/notion-sdk-js/blob/main/LICENSE)
 - [nodeca/js-yaml](https://github.com/nodeca/js-yaml), published by [MIT License](https://github.com/nodeca/js-yaml/blob/master/LICENSE)
+- [octokit/rest.js](https://github.com/octokit/rest.js), published by [MIT License](https://github.com/octokit/rest.js/blob/master/LICENSE)
+- [octokit/auth-app.js](https://github.com/octokit/auth-app.js), published by [MIT License](https://github.com/octokit/auth-app.js/blob/master/LICENSE)
 - [slackapi/node-slack-sdk](https://github.com/slackapi/node-slack-sdk), published by [MIT License](https://github.com/slackapi/node-slack-sdk/blob/main/LICENSE)

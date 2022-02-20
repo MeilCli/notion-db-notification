@@ -81,6 +81,10 @@ files:
     line: 3
   - file-path: 'packages/store-file/package.json'
     line: 20
+  - file-path: 'packages/store-github/package.json'
+    line: 3
+  - file-path: 'packages/store-github/package.json'
+    line: 22
   - file-path: 'packages/cli/package.json'
     line: 3
   - file-path: 'packages/cli/package.json'
@@ -89,3 +93,5 @@ files:
     line: 25
   - file-path: 'packages/cli/package.json'
     line: 26
+  - file-path: 'packages/cli/package.json'
+    line: 27

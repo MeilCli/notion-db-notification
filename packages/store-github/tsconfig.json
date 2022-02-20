@@ -8,15 +8,6 @@
     "references": [
         {
             "path": "../core"
-        },
-        {
-            "path": "../store-file"
-        },
-        {
-            "path": "../store-github"
-        },
-        {
-            "path": "../sender-slack"
         }
     ]
 }

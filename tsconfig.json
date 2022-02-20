@@ -17,6 +17,7 @@
         { "path": "packages/cli" },
         { "path": "packages/core" },
         { "path": "packages/store-file" },
+        { "path": "packages/store-github" },
         { "path": "packages/sender-slack" }
     ]
 }

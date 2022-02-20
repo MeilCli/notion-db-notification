@@ -1,7 +1,7 @@
 {
-    "name": "notion-db-notification-cli",
+    "name": "notion-db-notification-store-github",
     "version": "0.0.4",
-    "description": "notion-db-notification cli package",
+    "description": "notion-db-notification github store package",
     "keywords": [
         "notion"
     ],
@@ -11,20 +11,15 @@
     "files": [
         "lib"
     ],
-    "bin": {
-        "notion-db-notification": "lib/index.js"
-    },
     "scripts": {
-        "cli": "ts-node src/index.ts",
         "test": "jest"
     },
     "author": "MeilCli",
     "license": "MIT",
     "dependencies": {
-        "notion-db-notification-core": "^0.0.4",
-        "notion-db-notification-store-file": "^0.0.4",
-        "notion-db-notification-store-github": "^0.0.4",
-        "notion-db-notification-sender-slack": "^0.0.4"
+        "@octokit/auth-app": "^3.6.1",
+        "@octokit/rest": "^18.12.0",
+        "notion-db-notification-core": "^0.0.4"
     },
     "jest": {
         "clearMocks": true,

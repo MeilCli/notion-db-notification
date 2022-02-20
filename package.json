@@ -12,11 +12,13 @@
         "cli": "npm run build && npm run cli -w packages/cli",
         "link": "npm run build && npm link -w packages/cli",
         "reference": "workspaces-to-typescript-project-references",
-        "copy": "npm run copy:cli && npm run copy:core && npm run copy:sender-slack && npm run copy:store-file",
+        "copy": "npm run copy:cli && npm run copy:core && npm run copy:sender-slack && npm run copy:store",
         "copy:cli": "copyfiles README.md packages/cli",
         "copy:core": "copyfiles README.md packages/core",
         "copy:sender-slack": "copyfiles README.md packages/sender-slack",
-        "copy:store-file": "copyfiles README.md packages/store-file"
+        "copy:store": "npm run copy:store-file && npm run copy:store-github",
+        "copy:store-file": "copyfiles README.md packages/store-file",
+        "copy:store-github": "copyfiles README.md packages/store-github"
     },
     "author": "MeilCli",
     "license": "MIT",
@@ -43,6 +45,8 @@
     },
     "dependencies": {
         "@notionhq/client": "^0.4.13",
+        "@octokit/auth-app": "^3.6.1",
+        "@octokit/rest": "^18.12.0",
         "@slack/web-api": "^6.6.0",
         "js-yaml": "^4.1.0"
     }
