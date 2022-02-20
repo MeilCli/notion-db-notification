@@ -1,6 +1,6 @@
 {
     "name": "notion-db-notification-store-github",
-    "version": "0.0.4",
+    "version": "0.1.0",
     "description": "notion-db-notification github store package",
     "keywords": [
         "notion"
@@ -19,7 +19,7 @@
     "dependencies": {
         "@octokit/auth-app": "^3.6.1",
         "@octokit/rest": "^18.12.0",
-        "notion-db-notification-core": "^0.0.4"
+        "notion-db-notification-core": "^0.1.0"
     },
     "jest": {
         "clearMocks": true,
