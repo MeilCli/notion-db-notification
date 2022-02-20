@@ -36,6 +36,10 @@ jobs:
         run: |
           git checkout -b release
           git push origin release
+      # default npm version is 8.3.1, but its version is failed npm install
+      # required 8.5.0
+      - run: npm i -g npm@8
+      - run: npm -v
       - run: npm install
       - run: npm run build
       - run: npm run test
@@ -66,6 +70,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-action"
           git add package-lock.json
           git commit -m "update package-lock.json" -a
           git push origin release
