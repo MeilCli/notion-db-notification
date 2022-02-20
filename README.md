@@ -86,6 +86,16 @@ senders:
   - type: 'slack'
     token: 'env:SLACK_TOKEN' # environment variable name is SLACK_TOKEN
 ```
+```yml
+store:
+  type: 'github'
+  token: 'env:GITHUB_TOKEN' # environment variable name is GITHUB_TOKEN
+```
+```yml
+store:
+  type: 'github'
+  privateKey: 'env:GITHUB_APP_PRIVATE_KEY' # environment variable name is GITHUB_APP_PRIVATE_KEY
+```
 
 ### Ratelimit for Notion API
 Notion API has Rate limits.  

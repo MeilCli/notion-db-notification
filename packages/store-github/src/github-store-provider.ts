@@ -1,4 +1,4 @@
-import { Store, StoreProvider, ConfigStore } from "notion-db-notification-core";
+import { Store, StoreProvider, ConfigStore, resolveValue } from "notion-db-notification-core";
 import { GitHubStore } from "./github-store";
 import { GitHubAuthByPat, GitHubAuthByApp } from "./github-auth";
 
@@ -62,7 +62,7 @@ export class GitHubStoreProvider implements StoreProvider {
                     configStore.path,
                     configStore.owner,
                     configStore.repository,
-                    new GitHubAuthByPat(configStore.token)
+                    new GitHubAuthByPat(resolveValue(configStore.token))
                 );
             }
             if (isGitHubAppConfigStore(configStore)) {
@@ -70,7 +70,11 @@ export class GitHubStoreProvider implements StoreProvider {
                     configStore.path,
                     configStore.owner,
                     configStore.repository,
-                    new GitHubAuthByApp(configStore.applicationId, configStore.installationId, configStore.privateKey)
+                    new GitHubAuthByApp(
+                        configStore.applicationId,
+                        configStore.installationId,
+                        resolveValue(configStore.privateKey)
+                    )
                 );
             }
         }
