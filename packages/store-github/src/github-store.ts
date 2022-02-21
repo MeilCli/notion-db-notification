@@ -6,6 +6,7 @@ import { GitHubAuth } from "./github-auth";
 export class GitHubStore implements Store {
     private data: GitHubData = { scheme: "v0", timestamps: [] };
     private fileSha: string | undefined = undefined;
+    private previousContent: string | undefined = undefined;
 
     constructor(
         private readonly path: string,
@@ -31,6 +32,7 @@ export class GitHubStore implements Store {
             }
             if ("content" in response.data) {
                 this.fileSha = response.data.sha;
+                this.previousContent = response.data.content;
                 this.data = JSON.parse(Buffer.from(response.data.content, "base64").toString()) as GitHubData;
             }
             // eslint-disable-next-line no-empty
@@ -41,6 +43,9 @@ export class GitHubStore implements Store {
         const token = await this.auth.getToken();
         const octokit = new Octokit({ auth: token, userAgent: "notion-db-notification" });
         const content = Buffer.from(JSON.stringify(this.data, undefined, 4)).toString("base64");
+        if (this.previousContent == content) {
+            return Promise.resolve();
+        }
         await octokit.repos.createOrUpdateFileContents({
             owner: this.owner,
             repo: this.repository,
