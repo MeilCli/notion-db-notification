@@ -1,6 +1,6 @@
 {
     "name": "notion-db-notification-store-file",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "notion-db-notification file store package",
     "keywords": [
         "notion"
@@ -17,7 +17,7 @@
     "author": "MeilCli",
     "license": "MIT",
     "dependencies": {
-        "notion-db-notification-core": "^0.1.2"
+        "notion-db-notification-core": "^0.1.3"
     },
     "jest": {
         "clearMocks": true,
