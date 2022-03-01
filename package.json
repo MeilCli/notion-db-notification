@@ -44,7 +44,7 @@
         "typescript": "^4.6.2"
     },
     "dependencies": {
-        "@notionhq/client": "^0.4.13",
+        "@notionhq/client": "^1.0.0",
         "@octokit/auth-app": "^3.6.1",
         "@octokit/rest": "^18.12.0",
         "@slack/web-api": "^6.7.0",
