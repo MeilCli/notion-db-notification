@@ -5,7 +5,15 @@ const testPage: DatabasePage = {
     parent: { type: "database_id", database_id: "database_id" },
     icon: { type: "external", external: { url: "url" } },
     last_edited_time: "edite_time",
+    last_edited_by: {
+        id: "last_edited_by_user",
+        object: "user",
+    },
     created_time: "create_time",
+    created_by: {
+        id: "created_by_user",
+        object: "user",
+    },
     cover: { type: "external", external: { url: "url" } },
     url: "url",
     archived: false,
