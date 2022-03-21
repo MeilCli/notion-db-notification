@@ -97,6 +97,8 @@ export class NotificationComputer {
                 continue;
             }
             const lastWatch = databaseLastWatches.get(source.database);
+            const notifications: Notification[] = [];
+
             for (const page of pages) {
                 const lastEditedUnixTime = Date.parse(page.last_edited_time);
                 const createdUnixTime = Date.parse(page.created_time);
@@ -120,7 +122,10 @@ export class NotificationComputer {
                     properties: new Map(Object.entries(page.properties)),
                     event: event,
                 };
+                notifications.push(notification);
+            }
 
+            for (const notification of notifications.reverse()) {
                 await this.sendNotification(source.channel, notification, isDryRun);
             }
         }
