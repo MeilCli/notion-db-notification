@@ -18,7 +18,7 @@
     "license": "MIT",
     "dependencies": {
         "@octokit/auth-app": "^4.0.4",
-        "@octokit/rest": "^19.0.3",
+        "@octokit/rest": "^19.0.4",
         "notion-db-notification-core": "^0.1.4"
     },
     "jest": {
