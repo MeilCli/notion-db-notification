@@ -47,7 +47,7 @@
         "@notionhq/client": "^1.0.4",
         "@octokit/auth-app": "^4.0.9",
         "@octokit/rest": "^19.0.7",
-        "@slack/web-api": "^6.7.2",
+        "@slack/web-api": "^6.8.0",
         "js-yaml": "^4.1.0"
     }
 }
