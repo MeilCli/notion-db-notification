@@ -46,7 +46,7 @@
     "dependencies": {
         "@notionhq/client": "^1.0.4",
         "@octokit/auth-app": "^5.0.6",
-        "@octokit/rest": "^19.0.13",
+        "@octokit/rest": "^20.0.1",
         "@slack/web-api": "^6.7.2",
         "js-yaml": "^4.1.0"
     }
