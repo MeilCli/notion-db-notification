@@ -26,7 +26,7 @@ async function main() {
     const notificationComputerProvider = new NotificationComputerProvider(
         storeProviders,
         notificationSenderProviders,
-        notificationChannelProviders
+        notificationChannelProviders,
     );
     const notificationComputer = notificationComputerProvider.provide(configPath);
     if (isInit) {

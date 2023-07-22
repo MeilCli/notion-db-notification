@@ -7,7 +7,10 @@ type DataBaseQueryResponse = ReturnType<Client["databases"]["query"]> extends Pr
 export class NotionClient {
     private readonly client: Client;
 
-    constructor(private readonly apiPoller: ApiPoller, token: string) {
+    constructor(
+        private readonly apiPoller: ApiPoller,
+        token: string,
+    ) {
         this.client = new Client({ auth: token });
     }
 
@@ -17,7 +20,7 @@ export class NotionClient {
                 database_id: databaseId,
                 page_size: 100,
                 sorts: [{ timestamp: "last_edited_time", direction: "descending" }],
-            })
+            }),
         );
 
         const result: DatabasePage[] = [];
@@ -37,14 +40,14 @@ export class NotionClient {
     async getDatabasePages(
         databaseId: string,
         sinceUnixTime: number | null,
-        sincePageIds: string[] | null
+        sincePageIds: string[] | null,
     ): Promise<DatabasePage[]> {
         let response: DataBaseQueryResponse | null = await this.apiPoller.callApi(() =>
             this.client.databases.query({
                 database_id: databaseId,
                 page_size: 100,
                 sorts: [{ timestamp: "last_edited_time", direction: "descending" }],
-            })
+            }),
         );
 
         const result: DatabasePage[] = [];
@@ -82,7 +85,7 @@ export class NotionClient {
                         start_cursor: nextCursor,
                         page_size: 100,
                         sorts: [{ timestamp: "last_edited_time", direction: "descending" }],
-                    })
+                    }),
                 );
             } else {
                 response = null;

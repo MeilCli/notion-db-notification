@@ -12,7 +12,7 @@ export class GitHubStore implements Store {
         private readonly path: string,
         private readonly owner: string,
         private readonly repository: string,
-        private readonly auth: GitHubAuth
+        private readonly auth: GitHubAuth,
     ) {}
 
     async restore(): Promise<void> {

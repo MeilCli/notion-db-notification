@@ -62,7 +62,7 @@ export class GitHubStoreProvider implements StoreProvider {
                     configStore.path,
                     configStore.owner,
                     configStore.repository,
-                    new GitHubAuthByPat(resolveValue(configStore.token))
+                    new GitHubAuthByPat(resolveValue(configStore.token)),
                 );
             }
             if (isGitHubAppConfigStore(configStore)) {
@@ -73,8 +73,8 @@ export class GitHubStoreProvider implements StoreProvider {
                     new GitHubAuthByApp(
                         configStore.applicationId,
                         configStore.installationId,
-                        resolveValue(configStore.privateKey)
-                    )
+                        resolveValue(configStore.privateKey),
+                    ),
                 );
             }
         }

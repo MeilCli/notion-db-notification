@@ -11,7 +11,7 @@ export class NotificationComputerProvider {
     constructor(
         private readonly storeProviders: StoreProvider[],
         private readonly notificationSenderProviders: NotificationSenderProvider[],
-        private readonly notificationChannelProviders: NotificationChannelProvider[]
+        private readonly notificationChannelProviders: NotificationChannelProvider[],
     ) {}
 
     provide(configPath: string): NotificationComputer {

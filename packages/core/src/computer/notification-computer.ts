@@ -12,7 +12,7 @@ export class NotificationComputer {
         private readonly store: Store,
         private readonly senders: NotificationSender[],
         private readonly channels: NotificationChannel[],
-        private readonly sources: Source[]
+        private readonly sources: Source[],
     ) {}
 
     async init(): Promise<void> {
@@ -77,13 +77,13 @@ export class NotificationComputer {
                 const newLastWatchPageIds: string[] = [];
                 if (lastWatchUnixTime != newLastWatchUnixTime) {
                     newLastWatchPageIds.push(
-                        ...pages.filter((x) => newLastWatchUnixTime == Date.parse(x.last_edited_time)).map((x) => x.id)
+                        ...pages.filter((x) => newLastWatchUnixTime == Date.parse(x.last_edited_time)).map((x) => x.id),
                     );
                 } else if (lastWatchPageIds != null) {
                     // previous execution is same minute
                     newLastWatchPageIds.push(...lastWatchPageIds);
                     newLastWatchPageIds.push(
-                        ...pages.filter((x) => newLastWatchUnixTime == Date.parse(x.last_edited_time)).map((x) => x.id)
+                        ...pages.filter((x) => newLastWatchUnixTime == Date.parse(x.last_edited_time)).map((x) => x.id),
                     );
                 }
                 this.store.putDatabaseLastWatch(databaseId, newLastWatchUnixTime, newLastWatchPageIds);

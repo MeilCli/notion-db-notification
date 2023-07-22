@@ -3,7 +3,10 @@ import { Notification, NotificationChannel, NotificationSender, DatabaseProperty
 import { SlackNotificationChannel } from "./slack-notification-channel";
 
 export class SlackNotificationSender implements NotificationSender {
-    constructor(private readonly token: string, private readonly apiUrl: string | undefined) {}
+    constructor(
+        private readonly token: string,
+        private readonly apiUrl: string | undefined,
+    ) {}
 
     hasChannel(channel: NotificationChannel): boolean {
         return channel instanceof SlackNotificationChannel;
@@ -26,7 +29,7 @@ export class SlackNotificationSender implements NotificationSender {
     }
 
     private getAttachmentFields(
-        properties: Map<string, DatabaseProperty>
+        properties: Map<string, DatabaseProperty>,
     ): { title: string; value: string; short: boolean }[] | undefined {
         const result: { title: string; value: string; short: boolean }[] = [];
         for (const [name, property] of properties) {
@@ -65,7 +68,7 @@ export class SlackNotificationSender implements NotificationSender {
                             ? this.toUrlText(x.file.url)
                             : x.type == "external"
                             ? this.toUrlText(x.external.url)
-                            : ""
+                            : "",
                     );
                     result.push({ title: name, value: urlText.join("\n"), short: true });
                     break;
@@ -88,7 +91,7 @@ export class SlackNotificationSender implements NotificationSender {
                                         ? foumla.date.end == null
                                             ? this.toDateText(foumla.date.start)
                                             : `${this.toDateText(foumla.date.start)}~${this.toDateText(
-                                                  foumla.date.end
+                                                  foumla.date.end,
                                               )}`
                                         : "",
                                 short: true,

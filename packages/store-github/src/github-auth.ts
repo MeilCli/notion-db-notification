@@ -16,7 +16,7 @@ export class GitHubAuthByApp implements GitHubAuth {
     constructor(
         private readonly applicationId: number,
         private readonly installationId: number,
-        private readonly privateKey: string
+        private readonly privateKey: string,
     ) {}
 
     async getToken(): Promise<string> {
